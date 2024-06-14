@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreCompanyRequest;
 
 class CompanyController extends Controller
 {
@@ -20,7 +21,7 @@ class CompanyController extends Controller
         return Inertia::render('Company/Create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCompanyRequest $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
@@ -44,7 +45,7 @@ class CompanyController extends Controller
         return redirect()->route('company.index')->with('success', 'Company created successfully.');
     }
 
-    public function update(Request $request, Company $company)
+    public function update(StoreCompanyRequest $request, Company $company)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
